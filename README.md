@@ -1,0 +1,2 @@
+# BonezBot
+Discord Moderation Bot
