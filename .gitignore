@@ -1,1 +1,5 @@
 .idea
+config/options.ini
+config/servers.ini
+config/permissions.ini
+*.pyc
