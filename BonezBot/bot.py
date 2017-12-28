@@ -2,6 +2,7 @@ from BonezBot import Commands
 import os
 from discord.ext import commands
 from .config import Config, ConfigDefaults
+from .permissions import test
 import random
 
 __author__ = "SpBonez"
@@ -20,5 +21,6 @@ Commands.load_all_modules(modulePath, bot)
 @bot.event
 async def on_ready():
     print('Logged in as:\n{0} (ID: {0.id})'.format(bot.user))
+    test.test()
 
 bot.run(botconfig._login_token)
