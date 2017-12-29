@@ -24,19 +24,20 @@ class Permissiongroups:
         self.OwnerID = PermissionsDefaults.bot_configs.owner_id
         self.DevIDs = PermissionsDefaults.bot_configs.dev_ids
         self.serverroles ={}
-
+        self.AdminRoles = []
         serverconf = configparser.ConfigParser(interpolation=None)
         serverconf.read(PermissionsDefaults.serverconf_file, encoding='utf-8')
+
         for section in serverconf.sections():
-            serverID = serverconf.get(section, 'GuildID')
-            self.serverroles = {serverconf.get(section, 'GuildID'): {'Admins': [], 'Mods': []}}
-            if not serverconf.get(section, 'Admin_roles') and :
-                pass
+            if not serverconf.get(section, 'Admin_roles'):
+                print('No Admin Roles set! For: ' + section)
             else:
-                self.serverroles[serverconf.get(section, 'GuildID')]['Admins'].append(serverconf.get(section, 'Admin_roles'))
+                adminroles = serverconf.get(section, 'Admin_roles').split(', ')
+                for roleID in adminroles:
+                    self.AdminRoles.append(roleID)
 
 
 class test:
     def test():
-        mytest = Permissiongroups(PermissionsDefaults.perms_file)
-        print(mytest.serverroles)
+        mytest = Permissiongroups(ConfigDefaults.options_file)
+        print(mytest.AdminRoles)
