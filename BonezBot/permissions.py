@@ -18,6 +18,7 @@ class PermissionsDefaults:
     GrantToRoles = set()
     UserList = set()
 
+
 class Permissiongroups:
     def __init__(self, config_file):
         self.OwnerID = PermissionsDefaults.bot_configs.owner_id
@@ -51,7 +52,8 @@ class Permissiongroups:
                 for roleID in adminroles:
                     self.ModRoles.append(roleID)
 
-class permissions:
+
+class Permissions:
     def __init__(self, configfile,bot):
         serverconf = configparser.ConfigParser(interpolation=None)
         serverconf.read(PermissionsDefaults.serverconf_file, encoding='utf-8')
@@ -61,8 +63,8 @@ class permissions:
         self.bot = bot
 
 
-class test:
+class Test:
     def test():
         mytest1 = Permissiongroups(ConfigDefaults.options_file)
-        mytest2 = permissions(configfile=ConfigDefaults.options_file, bot=bot)
+        mytest2 = Permissions(configfile=ConfigDefaults.options_file, bot=bot)
         print(mytest1.AdminRoles)
