@@ -20,7 +20,7 @@ class PermissionsDefaults:
 
 
 class Permissiongroups:
-    def __init__(self, config_file):
+    def __init__(self):
         self.OwnerID = PermissionsDefaults.bot_configs.owner_id
         self.DevIDs = PermissionsDefaults.bot_configs.dev_ids
         self.AdminRoles = []
@@ -64,6 +64,6 @@ class Permissions:
 
 class Test:
     def test():
-        mytest1 = Permissiongroups(ConfigDefaults.options_file)
+        mytest1 = Permissiongroups()
         mytest2 = Permissions(Bot=bot)
         print(mytest1.AdminRoles)
