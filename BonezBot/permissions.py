@@ -4,7 +4,7 @@ import traceback
 import configparser
 from .config import Config, ConfigDefaults
 import discord
-from bot import bot as bot
+from .bot import bot
 
 log = logging.getLogger(__name__)
 
