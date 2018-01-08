@@ -4,6 +4,7 @@ import traceback
 import configparser
 from .config import Config, ConfigDefaults
 import discord
+from bot import bot as bot
 
 log = logging.getLogger(__name__)
 
@@ -35,31 +36,33 @@ class Permissiongroups:
                 adminroles = serverconf.get(section, 'Admin_Roles').split(', ')
                 for roleID in adminroles:
                     self.AdminRoles.append(roleID)
-            
+
             if not serverconf.get(section, 'BotMod_Roles'):
                 print('No Bot Mod set! For: ' + section)
             else:
                 adminroles = serverconf.get(section, 'BotMod_Roles').split(', ')
                 for roleID in adminroles:
                     self.BotModRoles.append(roleID)
-           
+
             if not serverconf.get(section, 'Mod_Roles'):
                 print('No Mod Roles set! For: ' + section)
             else:
                 adminroles = serverconf.get(section, 'Mod_Roles').split(', ')
                 for roleID in adminroles:
                     self.ModRoles.append(roleID)
-                    
+
 class permissions:
-    def __init__(self, configfile):
+    def __init__(self, configfile,bot):
         serverconf = configparser.ConfigParser(interpolation=None)
         serverconf.read(PermissionsDefaults.serverconf_file, encoding='utf-8')
         self.AdminPerms = serverconf.get('Permissions', 'Admin_Perm').split(', ')
         self.BotModPerms = serverconf.get('Permissions', 'BotModPerm').split(', ')
         self.ModPerms = serverconf.get('Permissions', 'Mod_Perm').split(', ')
-        
-        
+        self.bot = bot
+
+
 class test:
     def test():
-        mytest = Permissiongroups(ConfigDefaults.options_file)
-        print(mytest.AdminRoles)
+        mytest1 = Permissiongroups(ConfigDefaults.options_file)
+        mytest2 = permissions(configfile=ConfigDefaults.options_file, bot=bot)
+        print(mytest1.AdminRoles)
