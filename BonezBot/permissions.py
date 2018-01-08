@@ -23,7 +23,6 @@ class Permissiongroups:
     def __init__(self, config_file):
         self.OwnerID = PermissionsDefaults.bot_configs.owner_id
         self.DevIDs = PermissionsDefaults.bot_configs.dev_ids
-        self.serverroles ={}
         self.AdminRoles = []
         self.BotModRoles = []
         self.ModRoles = []
@@ -54,17 +53,17 @@ class Permissiongroups:
 
 
 class Permissions:
-    def __init__(self, configfile,bot):
+    def __init__(self, Bot):
         serverconf = configparser.ConfigParser(interpolation=None)
         serverconf.read(PermissionsDefaults.serverconf_file, encoding='utf-8')
         self.AdminPerms = serverconf.get('Permissions', 'Admin_Perm').split(', ')
         self.BotModPerms = serverconf.get('Permissions', 'BotModPerm').split(', ')
         self.ModPerms = serverconf.get('Permissions', 'Mod_Perm').split(', ')
-        self.bot = bot
+        self.bot = Bot
 
 
 class Test:
     def test():
         mytest1 = Permissiongroups(ConfigDefaults.options_file)
-        mytest2 = Permissions(configfile=ConfigDefaults.options_file, bot=bot)
+        mytest2 = Permissions(Bot=bot)
         print(mytest1.AdminRoles)
